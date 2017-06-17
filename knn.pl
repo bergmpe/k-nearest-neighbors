@@ -25,10 +25,9 @@ while (<$test>) {
 }
 close $test;
 
-while(1){
-	print "Enter the attributes separated by , : ";
-	chomp (my $attributes = <STDIN>);
-	print classify_knn($attributes);
+#subimit the test set to classifier.
+for(keys %test_classes){
+	print "test class: $test_classes{$_}, classify: ", classify_knn($_), "\n";
 }
  
 sub classify_knn{
