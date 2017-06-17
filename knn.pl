@@ -3,16 +3,27 @@ use strict;
 use warnings;
 use constant K => 3;
 
-my $file = 'iris.data';
+my $data_set = 'iris.data';
+my $test_set = 'iris.test';
 my %classes;
+my %test_classes;
 
-open my $info, $file or die  "Could not open the file $file";
+open my $info, $data_set or die  "Could not open the file $data_set";
+open my $test, $test_set or die  "Could not open the file $test_set";
 
+#read data set.
 while (<$info>) {
 	my ($attributes, $class_name) = split(/,I/);
 	$classes {$attributes} = "I".$class_name;
 }
 close $info;
+
+#read test set.
+while (<$test>) {
+	my ($attributes, $class_name) = split(/,I/);
+	$test_classes {$attributes} = "I".$class_name;
+}
+close $test;
 
 while(1){
 	print "Enter the attributes separated by , : ";
